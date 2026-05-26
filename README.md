@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# Планувальник подій
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Мобільний додаток для планування подій, створений на React Native та Expo як залікова робота з дисципліни "Розробка інтерфейсів користувача"
 
-## Get started
+Студент: Ярослав Іщик, група СА, 4 курс, спеціальність 123 "Комп'ютерна інженерія"
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## Про додаток
 
-2. Start the app
+Додаток для створення і перегляду подій. Є календар, список подій і нагадування.
 
-   ```bash
-   npx expo start
-   ```
+## Функціонал
 
-In the output, you'll find options to open the app in a
+- календар з подіями по датах
+- створення, редагування і видалення подій
+- назва, опис, дата і час
+- локальні нагадування
+- збереження даних на пристрої
+- список усіх подій
+- світла і темна тема
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Технології
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- React Native + Expo
+- Expo Router
+- Context API
+- AsyncStorage
+- expo-notifications
+- react-native-calendars
+- date-fns
 
-## Get a fresh project
+## Структура
 
-When you're ready, run:
+```
+/app
+  /(tabs)/index.tsx     — календар
+  /(tabs)/events.tsx    — події
+  /event/[id].tsx       — додавання і редагування
 
-```bash
-npm run reset-project
+/src
+  /context/EventContext.tsx    — події
+  /context/ThemeContext.tsx    — тема
+  /services/storage.ts         — збереження
+  /services/notifications.ts   — нагадування
+  /constants/colors.ts         — кольори
+  /types/index.ts              — типи
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Запуск
 
-## Learn more
+```bash
+npm install
+npx expo start -c
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Відкрити через Expo Go та відсканувати QR-код
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Вимоги: Node.js 18+, Expo Go

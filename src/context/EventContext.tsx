@@ -32,7 +32,6 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
 
   const loadEvents = async () => {
     const loadedEvents = await storage.getEvents();
-    // Якщо це перший запуск, можна додати тестові дані, але ми зробимо це на екрані, якщо список порожній
     setEvents(loadedEvents);
     setIsLoading(false);
   };
@@ -40,10 +39,8 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
   const addEvent = async (eventData: Omit<AppEvent, 'id' | 'createdAt' | 'notificationId'>) => {
     let notificationId: string | undefined;
 
-    // Створюємо об'єкт дати для нагадування (з дати і часу)
     const eventDate = new Date(`${eventData.date}T${eventData.time}`);
-    
-    // Якщо увімкнено нагадування і час у майбутньому
+
     if (eventData.hasReminder && eventDate.getTime() > Date.now()) {
       notificationId = await scheduleEventReminder(
         eventData.title,
@@ -71,12 +68,12 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
     const oldEvent = events[eventIndex];
     let newNotificationId = oldEvent.notificationId;
 
-    // Якщо змінилися поля, що впливають на сповіщення
-    const needsNewReminder = updatedFields.date !== undefined || 
-                             updatedFields.time !== undefined || 
-                             updatedFields.hasReminder !== undefined ||
-                             updatedFields.title !== undefined ||
-                             updatedFields.description !== undefined;
+    const needsNewReminder =
+      updatedFields.date !== undefined ||
+      updatedFields.time !== undefined ||
+      updatedFields.hasReminder !== undefined ||
+      updatedFields.title !== undefined ||
+      updatedFields.description !== undefined;
 
     if (needsNewReminder) {
       if (oldEvent.notificationId) {
